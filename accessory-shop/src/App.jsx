@@ -7,12 +7,49 @@ import Row from 'react-bootstrap/Row';
 import DataTable from './components/DataTable'
 import productList from './accessory-products.json'
 
+
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
 function App() {
   const productRef = useRef()
   const quantityRef = useRef()
 
   const [price, setPrice] = useState(productList[0].price)
   const [selectedItems, setSelectedItems] = useState([])
+  const [filteredSelectedItems, setFilteredSelectedItems] = useState([])
+
+
+
+  const deleteItemByIndex = (index) => {
+    selectedItems.splice(index, 1)
+    setSelectedItems([...selectedItems])
+    setFilteredSelectedItems([...selectedItems])
+  }
+
+  const search = (keyword) => {
+    // const filterItems = selectedItems.filter(item => item.name.includes(keyword))
+    // selectedItems(filterItems)
+    setFilteredSelectedItems([
+      ...selectedItems.filter(item => item.name.includes(keyword))
+    ])
+
+
+  }
+
+
+  const sort = (direction) => {
+    const sortedItems = [...selectedItems].sort((a, b) => {
+      if (direction === "asc") {
+        return a.name.localeCompare(b.name);
+      } else {
+        return b.name.localeCompare(a.name);
+      }
+    });
+    setSelectedItems([...sortedItems]);
+    setFilteredSelectedItems([...sortedItems]);
+  };
+
+
 
   const handleSelect = (e) => {
     const pid = parseInt(productRef.current.value)
@@ -39,13 +76,14 @@ function App() {
     })
 
     setSelectedItems([...selectedItems])
+    setFilteredSelectedItems([...selectedItems])
 
     console.table(selectedItems)
   }
-  
+
   return (
     <>
-    <Container>
+      <Container>
         <Row>
           <Col xs={6}>
             <Form.Label htmlFor="inputProductName">Product Name</Form.Label>
@@ -79,19 +117,16 @@ function App() {
             <Button variant="success" onClick={handleAdd}>Add</Button>
           </Col>
           <Col>
-            <DataTable data={selectedItems} />
+            <DataTable data={filteredSelectedItems}
+              onDelete={deleteItemByIndex}
+              onSearch={search} 
+              onSort={sort}/>
           </Col>
         </Row>
       </Container>
-      {/* <div>Product Name:</div>
-      <div>
-        <input type="text" ref={productRef}/>
-      </div>
-      <div>
-        <Button onClick={handleAdd}>Add</Button>
-      </div> */}
+
     </>
   )
 }
 
-export default App
+export default App;
