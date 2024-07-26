@@ -23,6 +23,7 @@ const DataTable = ({ data, onDelete, onSearch, onSort }) => {
                 Search</Button>
             
             <span>Sort</span>
+            
             <Button variant='outline-dark' ><i class="bi bi-arrow-down"  onClick={() => onSort("dsc")}></i></Button>
             <Button variant='outline-dark' ><i class="bi bi-arrow-up" onClick={() => onSort("asc")}></i></Button>
             
