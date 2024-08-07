@@ -117,7 +117,7 @@ function App() {
             <Button variant="success" onClick={handleAdd}>Add</Button>
           </Col>
           <Col>
-            <DataTable data={filteredSelectedItems}
+            <DataTable 
               onDelete={deleteItemByIndex}
               onSearch={search} 
               onSort={sort}/>

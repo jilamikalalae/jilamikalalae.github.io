@@ -16,7 +16,7 @@ const DataTable = ({ data, onDelete, onSearch, onSort }) => {
 
 
     return (
-        <Container>
+        <Container >
             <input type="text" placeholder="Search..." ref={sRef} />{' '}
             <Button onClick={handleSearch} variant='outline-dark'>
                 <i className='bi bi-search'></i>
@@ -24,8 +24,8 @@ const DataTable = ({ data, onDelete, onSearch, onSort }) => {
             
             <span>Sort</span>
             
-            <Button variant='outline-dark' ><i class="bi bi-arrow-down"  onClick={() => onSort("dsc")}></i></Button>
-            <Button variant='outline-dark' ><i class="bi bi-arrow-up" onClick={() => onSort("asc")}></i></Button>
+            <Button variant='outline-dark' ><i className="bi bi-arrow-down"  onClick={() => onSort("dsc")}></i></Button>
+            <Button variant='outline-dark' ><i className="bi bi-arrow-up" onClick={() => onSort("asc")}></i></Button>
             
             <Table variant='dark'>
                 <thead>
