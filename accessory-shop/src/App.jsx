@@ -118,6 +118,7 @@ function App() {
           </Col>
           <Col>
             <DataTable 
+              data={filteredSelectedItems}
               onDelete={deleteItemByIndex}
               onSearch={search} 
               onSort={sort}/>
