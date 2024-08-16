@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react'
+import { useLocalStorage } from 'react-use';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
@@ -9,13 +10,15 @@ import productList from './accessory-products.json'
 
 
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { useLocalStorage } from 'react-use';
 
 function App() {
   const productRef = useRef()
   const quantityRef = useRef()
 
   const [price, setPrice] = useState(productList[0].price)
-  const [selectedItems, setSelectedItems] = useState([])
+  // const [selectedItems, setSelectedItems] = useState([])
+  const [selectedItems, setSelectedItems, remove] = useLocalStorage("selected-items",[])
   const [filteredSelectedItems, setFilteredSelectedItems] = useState([])
 
 
